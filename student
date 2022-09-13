@@ -1,0 +1,84 @@
+#include<iostream> 
+using namespace std; 
+class student 
+{
+char name[25]; 
+int roll; 
+int m1[6],m2[6],m3[6]; 
+int avg[6]; 
+static int count; 
+public: 
+void read(); 
+void average(); 
+void display(); 
+};
+int student::count; 
+void student::read() 
+{
+cout<<"Enter the name of the student"<<endl; 
+cin>>name; 
+roll=++count; 
+for(int i=0;i<6;i++) 
+{
+cout<<"Enter first test marks for subject "<<i+1<<":"<<endl; 
+cin>>m1[i]; 
+if(m1[i]>25 || m1[i]<0) 
+{ 
+cout<<"Enter valid marks(0-25)"<<endl; 
+cin>>m1[i]; 
+}
+cout<<"Enter second test marks"<<endl; 
+cin>>m2[i]; 
+if(m2[i]>25 || m2[i]<0) 
+{ 
+cout<<"Enter valid marks(0-25)"<<endl; 
+cin>>m2[i]; 
+}
+cout<<"Enter third test marks"<<endl; 
+cin>>m3[i]; 
+if(m3[i]>25 || m3[i]<0) 
+{ 
+cout<<"Enter valid marks(0-25)"<<endl; 
+cin>>m3[i]; 
+}
+}
+}
+void student::average() 
+{ for(int i=0;i<6;i++) 
+{ 
+if(m1[i]>=m2[i] && m3[i]>=m2[i]) 
+avg[i]=(m1[i]+m3[i])/2; 
+else if(m2[i]>=m1[i] && m3[i]>=m1[i]) 
+avg[i]=(m2[i]+m3[i])/2; 
+else 
+avg[i]=(m1[i]+m2[i])/2; 
+} 
+}
+void student::display() 
+{
+cout<<"Name:"<<name<<endl; 
+cout<<"Roll number:"<<roll<<endl; 
+for(int i=0;i<6;i++) 
+{ 
+cout<<"Average marks of "<<i+1<<" subject is : "<<avg[i]<<endl;cout<<"\n\n"; 
+} 
+}
+int main() 
+{
+int n,i; 
+student s[10]; 
+cout<<"Enter no.of students"<<endl; 
+cin>>n; 
+for(i=0;i<n;i++) 
+{ 
+cout<<"Enter student information"<<endl; 
+s[i].read(); 
+s[i].average(); 
+}
+for(i=0;i<n;i++) 
+{ 
+s[i].display(); 
+}
+return 0; 
+}
+
